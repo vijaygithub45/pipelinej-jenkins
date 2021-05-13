@@ -1,15 +1,32 @@
 pipeline {
+    
     agent any
+    
     stages {
-        stage('Example') {
-            steps {
-                echo 'Hello World'
-            }
+        stage ('Compile Stage') {
+        
+          steps{
+              withMaven (maven: 'maven-3.6.3') {
+                  sh 'mvn clean compile'
+              }
+          }
+        }
+        stage ('Testing Stage') {
+          steps{
+              withMaven (maven: 'maven-3.6.3') {
+                  sh 'mvn test'
+              } 
+          }
+        }
+        stage ('Deployment Stage') {
+          steps{
+              withMaven (maven: 'maven-3.6.3') {
+                  sh 'mvn deploy'
+              } 
+          }
         }
     }
-    post { 
-        always { 
-            echo 'I will always say Hello again!'
-        }
-    }
+
+
+
 }
