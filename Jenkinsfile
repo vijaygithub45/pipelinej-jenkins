@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools { 
-        maven 'Maven 3.3.6' 
-        jdk 'jdk8' 
+        maven 'Maven_install' 
+        jdk 'JAVA_HOME' 
     }
     stages {
         stage ('Initialize') {
